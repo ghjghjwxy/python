@@ -16,9 +16,9 @@ heart =[
 [0,0,0,0,1,0,0,0,0],
 [0,0,0,0,0,0,0,0,0]
 ]
-dir1 = r'C:\Users\wxy\Desktop\jiugongge\image2'#心形拼图图片绝对路径
+dir1 = r'C:\xxx\image2'#心形拼图图片文件夹绝对路径
 list1= os.listdir(dir1)
-dir2 = r'C:\Users\wxy\Desktop\jiugongge\1554626293(1).png'#中间人图片的绝对路径
+dir2 = r'C:\xxx\1554622446(1).png'#中间人图片的绝对路径
 
 for x in range(0, 9):
     for y in range(0, 9):
