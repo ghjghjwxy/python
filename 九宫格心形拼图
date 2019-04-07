@@ -1,0 +1,48 @@
+from PIL import Image
+import os, sys
+import random
+
+mw =200 #每张图大小，若不想设置成正方形，例如：wh=300
+toImage = Image.new('RGBA', (mw*9, mw*9),'pink')  #画布大小
+#图片形状构造
+heart =[
+[0,0,1,1,0,1,1,0,0],
+[0,1,0,0,1,0,0,1,0],
+[1,0,0,0,0,0,0,0,1],
+[1,0,0,0,1,0,0,0,1],
+[0,1,0,0,0,0,0,1,0],
+[0,0,1,0,0,0,1,0,0],
+[0,0,0,1,0,1,0,0,0],
+[0,0,0,0,1,0,0,0,0],
+[0,0,0,0,0,0,0,0,0]
+]
+dir1 = r'C:\Users\wxy\Desktop\jiugongge\image2'#心形拼图图片绝对路径
+list1= os.listdir(dir1)
+dir2 = r'C:\Users\wxy\Desktop\jiugongge\1554626293(1).png'#中间人图片的绝对路径
+
+for x in range(0, 9):
+    for y in range(0, 9):
+        #try-except：跳过打不开的图片
+        #空白
+        if heart[y][x]==0:
+            continue
+        #中间人
+        if y==3 and x==4:
+            fromImage = Image.open(dir2)
+            fromImage =fromImage.resize((mw, mw), Image.ANTIALIAS)
+            toImage.paste(fromImage, (x * mw, 100+y * mw))
+            continue
+        #心形
+        try:
+            
+            path = random.choice(list1)
+            fromImage = Image.open(dir1+'/'+path)
+            fromImage =fromImage.resize((mw, mw), Image.ANTIALIAS)
+            toImage.paste(fromImage, (x * mw, 100+y * mw))
+        except IOError:
+            pass
+
+
+toImage.show()
+toImage= toImage.convert('RGB')
+toImage.save('Picture_reasult.jpg')
